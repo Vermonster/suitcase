@@ -79,6 +79,7 @@ module Suitcase
         params["stateProvinceCode"] = info[:province]
         params["countryCode"] = info[:country]
         params["postalCode"] = info[:postal_code]
+        params["specialInformation"] = info[:special_information] if info[:special_information]
 
         uri = Room.url(
           method: "res",
