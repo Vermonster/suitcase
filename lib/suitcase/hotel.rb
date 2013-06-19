@@ -137,8 +137,12 @@ module Suitcase
     # Returns an Array of Hotels.
     def self.find_by_info(info)
       params = info.dup
-      params["numberOfResults"] = params[:results] ? params[:results] : 10
+
+      unless params[:cacheKey]
+        params["numberOfResults"] = params[:results] ? params[:results] : 10
+      end
       params.delete(:results)
+
       if params[:destination_id]
         params["destinationId"] = params[:destination_id]
         params.delete(:destination_id)
