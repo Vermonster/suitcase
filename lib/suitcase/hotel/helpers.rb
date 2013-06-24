@@ -116,7 +116,7 @@ module Suitcase
           raise e
         end
 
-        JSON.parse(Net::HTTP.get_response(uri).body)
+        JSON.parse(response.body)
       end
 
       # Internal: Raise the errors returned from the response.
