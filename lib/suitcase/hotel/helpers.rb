@@ -84,7 +84,14 @@ module Suitcase
       #
       # Returns the parsed JSON.
       def parse_response(uri)
-        response = Net::HTTP.get_response(uri)
+        response = nil
+        require 'benchmark'
+        puts "========" * 10
+        puts uri
+        print "Fetching: "
+        puts Benchmark.measure {
+          response = Net::HTTP.get_response(uri)
+        }
 
         if response.code.to_i == 403
           if response.body.include?("Forbidden")
@@ -116,7 +123,12 @@ module Suitcase
           raise e
         end
 
-        JSON.parse(response.body)
+        ret = nil
+        print "Parsing:  "
+        puts Benchmark.measure {
+          ret = JSON.parse(response.body)
+        }
+        ret
       end
 
       # Internal: Raise the errors returned from the response.
