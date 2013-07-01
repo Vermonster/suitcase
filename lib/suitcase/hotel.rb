@@ -11,6 +11,7 @@ require "suitcase/hotel/payment_option"
 require "suitcase/hotel/reservation"
 require "suitcase/hotel/room"
 require "suitcase/hotel/surcharge"
+require "suitcase/hotel/cancellation"
 
 module Suitcase
   # Public: A Class representing a single Hotel. It provides methods for
