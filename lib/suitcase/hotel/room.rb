@@ -81,6 +81,9 @@ module Suitcase
         params["postalCode"] = info[:postal_code]
         params["specialInformation"] = info[:special_information] if info[:special_information]
 
+        params['affiliateConfirmationId'] = info[:affiliate_confirmation_id]
+        params['affiliateCustomerId'] = info[:affiliate_customer_id]
+
         uri = Room.url(
           method: "res",
           params: params,
