@@ -30,7 +30,7 @@ module Suitcase
       #
       # Returns a Boolean based on whether the error is recoverable.
       def recoverable?
-        @recovery.is_a?(Hash)
+        @recovery.is_a?(Hash) || self.handling == "RECOVERABLE"
       end
     end
   end
