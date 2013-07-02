@@ -14,7 +14,7 @@ module Suitcase
       # Public: Getter for the error type..
       attr_reader :type
 
-      attr_accessor :handling, :category
+      attr_accessor :handling, :category, :raw
 
       # Internal: Create a new EAN exception.
       #

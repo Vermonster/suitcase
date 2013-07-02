@@ -144,6 +144,7 @@ module Suitcase
 
           exception.handling = info[key]['EanWsError']['handling']
           exception.category = info[key]['EanWsError']['category']
+          exception.raw = info[key]['EanWsError']
 
           if message =~ /Multiple locations/ && (info = info[key]["LocationInfos"])
             exception.type = :multiple_locations
