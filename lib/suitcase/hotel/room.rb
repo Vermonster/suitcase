@@ -93,6 +93,7 @@ module Suitcase
         )
         session = Patron::Session.new
         session.timeout = 60000
+        session.connect_timeout = 10
         session.base_url = "https://" + uri.host
         res = session.post uri.request_uri, {}
         parsed = JSON.parse res.body
