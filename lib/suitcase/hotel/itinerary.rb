@@ -1,0 +1,47 @@
+module Suitcase
+  class Hotel
+    class Itinerary
+      extend Helpers
+      include Helpers
+
+      attr_accessor :confirmations, :raw, :status
+
+      def initialize(raw)
+        self.raw = raw
+        self.confirmations = raw["HotelItineraryResponse"]['Itinerary']['HotelConfirmation']
+
+        self.status = self.confirmations.map{|x| x['status']}
+      end
+
+      def pending_supplier?
+        status.any?{|status| status == "PS"}
+      end
+
+      def canceled?
+        status.all?{|status| status == "CX"}
+      end
+
+      def confirmed?
+        status.all?{|status| status == "CF"}
+      end
+
+      def unconfirmed?
+        status.all?{|status| status == "UC"}
+      end
+
+      def agent_follow_up?
+        status.any?{|status| status == "ER"}
+      end
+
+      def deleted?
+        status.all?{|status| status == "DT"}
+      end
+
+      def self.find(affiliate_confirmation_id)
+        parsed = Hotel.parse_response(Hotel.url(method: 'itin', params: {affiliateConfirmationId: affiliate_confirmation_id}))
+        Hotel.handle_errors(parsed)
+        Itinerary.new(parsed)
+      end
+    end
+  end
+end
