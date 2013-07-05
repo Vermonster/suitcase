@@ -8,7 +8,7 @@ module Suitcase
 
       def initialize(raw)
         self.raw = raw
-        self.confirmations = raw["HotelItineraryResponse"]['Itinerary']['HotelConfirmation']
+        self.confirmations = Array.wrap(raw["HotelItineraryResponse"]['Itinerary']['HotelConfirmation'])
         self.itinerary_id = raw["HotelItineraryResponse"]["Itinerary"]["itineraryId"]
 
         self.status = self.confirmations.map{|x| x['status']}
