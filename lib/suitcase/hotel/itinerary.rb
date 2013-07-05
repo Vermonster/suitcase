@@ -4,11 +4,12 @@ module Suitcase
       extend Helpers
       include Helpers
 
-      attr_accessor :confirmations, :raw, :status
+      attr_accessor :confirmations, :raw, :status, :itinerary_id
 
       def initialize(raw)
         self.raw = raw
         self.confirmations = raw["HotelItineraryResponse"]['Itinerary']['HotelConfirmation']
+        self.itinerary_id = raw["HotelItineraryResponse"]["Itinerary"]["itineraryId"]
 
         self.status = self.confirmations.map{|x| x['status']}
       end
