@@ -84,6 +84,9 @@ module Suitcase
         params['affiliateConfirmationId'] = info[:affiliate_confirmation_id]
         params['affiliateCustomerId'] = info[:affiliate_customer_id]
 
+        # http://developer.ean.com/docs/best_practices/all/Specific_Request#3
+        params['itineraryId'] = info[:itinerary_id] if info[:itinerary_id]
+
         uri = Room.url(
           method: "res",
           params: params,
