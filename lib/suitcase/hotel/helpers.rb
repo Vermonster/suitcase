@@ -149,7 +149,7 @@ module Suitcase
           if message =~ /Multiple locations/ && (info = info[key]["LocationInfos"])
             exception.type = :multiple_locations
             exception.recovery = {
-              alternate_locations: info["LocationInfo"].map do |info|
+              alternate_locations: info["LocationInfo"].to_a.map do |info|
               Location.new(
                 destination_id: info["destinationId"],
                 type: info["type"],
