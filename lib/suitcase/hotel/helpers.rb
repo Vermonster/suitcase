@@ -123,12 +123,7 @@ module Suitcase
           raise e
         end
 
-        ret = nil
-        print "Parsing:  "
-        puts Benchmark.measure {
-          ret = JSON.parse(response.body)
-        }
-        ret
+        JSON.parse(response.body)
       end
 
       # Internal: Raise the errors returned from the response.
