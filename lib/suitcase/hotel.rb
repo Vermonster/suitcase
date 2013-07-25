@@ -246,10 +246,15 @@ module Suitcase
     #
     # Returns an Array of Image.
     def self.images(parsed)
-      images = parsed["HotelInformationResponse"]["HotelImages"]["HotelImage"].map do |image_data|
-        Suitcase::Image.new(image_data)
-      end if parsed["HotelInformationResponse"] && parsed["HotelInformationResponse"]["HotelImages"] && parsed["HotelInformationResponse"]["HotelImages"]["HotelImage"]
-      
+      if parsed["HotelInformationResponse"] && parsed["HotelInformationResponse"]["HotelImages"] && parsed["HotelInformationResponse"]["HotelImages"]["HotelImage"]
+        image_array = parsed["HotelInformationResponse"]["HotelImages"]["HotelImage"]
+        image_array = [image_array] unless image_array.is_a?(Array)
+
+        images = image_array.map do |image_data|
+          Suitcase::Image.new(image_data)
+        end
+      end
+
       unless parsed["thumbNailUrl"].nil? or parsed["thumbNailUrl"].empty?
         images = [Suitcase::Image.new("thumbnailURL" => "http://images.travelnow.com" + parsed["thumbNailUrl"])]
       end
