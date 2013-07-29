@@ -38,8 +38,14 @@ module Suitcase
         status.all?{|status| status == "DT"}
       end
 
-      def self.find(affiliate_confirmation_id)
+      def self.find_by_affiliate_confirmation_id(affiliate_confirmation_id)
         parsed = Hotel.parse_response(Hotel.url(method: 'itin', params: {affiliateConfirmationId: affiliate_confirmation_id}))
+        Hotel.handle_errors(parsed)
+        Itinerary.new(parsed)
+      end
+
+      def self.find_by_id_and_email(itinerary_id, email)
+        parsed = Hotel.parse_response(Hotel.url(method: 'itin', params: {itineraryId: itinerary_id, email: email}))
         Hotel.handle_errors(parsed)
         Itinerary.new(parsed)
       end
