@@ -86,6 +86,7 @@ module Suitcase
 
         # http://developer.ean.com/docs/best_practices/all/Specific_Request#3
         params['itineraryId'] = info[:itinerary_id] if info[:itinerary_id]
+        params["sendReservationEmail"] = info[:send_reservation_email]
 
         uri = Room.url(
           method: "res",
