@@ -256,7 +256,7 @@ module Suitcase
       end
 
       unless parsed["thumbNailUrl"].nil? or parsed["thumbNailUrl"].empty?
-        images = [Suitcase::Image.new("thumbnailURL" => "http://images.travelnow.com" + parsed["thumbNailUrl"])]
+        images = [Suitcase::Image.new("thumbnailURL" => "https://images.travelnow.com" + parsed["thumbNailUrl"])]
       end
 
       images || []
