@@ -58,7 +58,6 @@ module Suitcase
         params["apiKey"] = Configuration.hotel_api_key if builder[:include_key]
         params["cid"] = (Configuration.hotel_cid ||= 55505) if builder[:include_cid]
         params["sig"] = generate_signature if Configuration.use_signature_auth?
-
         url = main_url(builder[:secure]) + method.to_s + (builder[:as_form] ? "" : "?")
 
         params.merge!(build_session_params(builder[:session]))
@@ -73,7 +72,7 @@ module Suitcase
       # Returns the URL.
       def main_url(secure)
         url = "http#{secure ? "s" : ""}://#{secure ? "book." : ""}"
-        url += "api.ean.com/ean-services/rs/hotel/v3/"
+        url += (Configuration.hostname ||= "api.ean.com") + "/ean-services/rs/hotel/v3/"
         url
       end
 

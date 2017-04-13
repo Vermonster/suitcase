@@ -81,8 +81,8 @@ describe Suitcase::Hotel do
   describe "#rooms" do
     before do
       @info = {
-        arrival: "1/1/2013",
-        departure: "1/8/2013"
+        arrival: "6/1/2014",
+        departure: "6/8/2014"
       }
       @rooms = @hotel.rooms(@info)
     end

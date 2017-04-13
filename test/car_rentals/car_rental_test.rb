@@ -4,8 +4,8 @@ describe Suitcase::CarRental do
   before :each do
     info = {
       destination: "Seattle",
-      start_date: "07/04/2012",
-      end_date: "07/11/2012",
+      start_date: Keys::RESERVATION_START_TIME,
+      end_date: Keys::RESERVATION_END_TIME,
       pickup_time: "07:30",
       dropoff_time: "11:30"
     }

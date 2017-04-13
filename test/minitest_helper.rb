@@ -1,8 +1,7 @@
 # Testing frameworks
-require "turn"
-require "minitest/spec"
+gem "minitest"
 require "minitest/autorun"
-require "mocha"
+require "mocha/setup"
 
 # For making sure the dates will be valid
 require "chronic"
@@ -21,9 +20,3 @@ require "keys"
 # Support files
 require "support/fake_response"
 
-# Turn configuration
-Turn.config do |config|
-  config.format = :pretty
-  # config.trace = true
-  config.natural = true
-end
